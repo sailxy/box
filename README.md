@@ -1,0 +1,3 @@
+- WSL
+- VS Code
+- Docker Desktop
