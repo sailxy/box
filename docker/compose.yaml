@@ -18,3 +18,9 @@ services:
     container_name: redis-queue
     ports:
       - "6380:6379"
+  asynqmon:
+    image: hibiken/asynqmon
+    container_name: asynqmon
+    ports:
+      - "8080:8080"
+    command: ["--redis-addr=redis-queue:6379"]
