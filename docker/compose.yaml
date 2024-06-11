@@ -13,9 +13,9 @@ services:
     container_name: redis
     ports:
       - "6379:6379"
-  redis-queue:
+  asynq:
     image: redis
-    container_name: redis-queue
+    container_name: asynq
     ports:
       - "6380:6379"
   asynqmon:
@@ -23,4 +23,4 @@ services:
     container_name: asynqmon
     ports:
       - "8080:8080"
-    command: ["--redis-addr=redis-queue:6379"]
+    command: ["--redis-addr=asynq:6379"]
