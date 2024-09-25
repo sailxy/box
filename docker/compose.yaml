@@ -27,6 +27,35 @@ services:
       - /opt/apps/mysql/conf.d:/etc/mysql/conf.d
     networks:
       - common-net
+  redis:
+    image: redis
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - /opt/apps/redis/data:/data
+    networks:
+      - common-net
+  asynq:
+    image: redis
+    container_name: asynq
+    restart: always
+    volumes:
+      - /opt/apps/asynq/data:/data
+    networks:
+      - common-net
+  asynqmon:
+    image: hibiken/asynqmon
+    container_name: asynqmon
+    restart: always
+    depends_on:
+      - asynq
+    ports:
+      - "8080:8080"
+    networks:
+      - common-net
+    command: ["--redis-addr=asynq:6379"]
 
 networks:
   common-net:
