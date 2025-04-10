@@ -76,6 +76,19 @@ services:
       - common-net
     command: ["--redis-addr=asynq:6379"]
 
+  jaeger:
+    image: jaegertracing/all-in-one
+    container_name: jaeger
+    restart: always
+    ports:
+      - "16686:16686"
+      - "4317:4317"
+      - "4318:4318"
+      - "5778:5778"
+      - "9411:9411"
+    networks:
+      - common-net
+
 networks:
   common-net:
     external: true
