@@ -54,6 +54,18 @@ services:
       - /opt/apps/redis/data:/data
     networks:
       - common-net
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+    networks:
+      - common-net
   asynq:
     image: redis
     container_name: asynq
